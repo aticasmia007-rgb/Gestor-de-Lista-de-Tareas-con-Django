@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LISTAS | Andrea</title>
+</head>
+<body>
+    <main>
+        <!-- <p> Soy Andrea desde django, probando templates </p> -->
+        <div id="formulario">
+            <form method="post" action="">
+                {% csrf_token %} <!-- Es una linea que se pone por seguridad, sino no podría ejecutar el post... -->
+                <label for="nombreLista">TITULO DE LA LISTA </label>
+                <input type="text" name="nombreLista" id="nombreLista">
+
+                <button style="background-color: aquamarine" type="submit">Crear lista</button>
+            </form>
+        </div>
+        {% if db_data_taskList %} <!-- si no hay, es default false -->
+            {% for db_data_taskList in db_data_taskList %} 
+                <h3><a href="/lists/{{ db_data_taskList.id }}/tasks/">{{db_data_taskList.name}}</a></h3> <!-- Para poder hacerlo "interactivo", pongo de enlace la url de task -->
+                <h5> FECHA DE CREACIÓN : {{db_data_taskList.created_at}}</h5>
+            {% endfor %}
+            {% else %}
+                <h3>No hay ninguna lista añadida </h3>
+        {% endif %}
+    
+    </main>
+</body>
+</html>

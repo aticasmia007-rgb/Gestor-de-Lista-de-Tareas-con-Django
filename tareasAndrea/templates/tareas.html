@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAREAS | Andrea </title>
+</head>
+<body>
+    <form method="POST" action="">
+    {% csrf_token %}
+        <input type="text" name="tituloTarea">
+        <button style="background-color: aquamarine;" type="submit">Añadir Tarea</button>
+    </form>
+    {% if tareas %} <!-- si no hay, es default false -->
+            <h1>Tareas de la Lista con identificador {{lista.id}} </h1> 
+                        
+            {% for data_task in tareas %} 
+                <h3>{{data_task.title}}</h5>
+                <h5>¿COMPLETADA?: {{data_task.completed}}</h4>
+                <h6>FECHA DE CREACIÓN: {{data_task.created_at}}</h3>
+            {% endfor %}
+        {% else %}
+                <h3>No hay ninguna tarea añadida </h3>
+    {% endif %}
+
+
+    
+</body>
+</html>
